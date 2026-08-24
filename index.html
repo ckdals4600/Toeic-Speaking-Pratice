@@ -417,14 +417,25 @@ button{ font:inherit; color:inherit; }
    DATA — [category, korean, english, note?]
 ------------------------------------------------------------------ */
 const DECKS = [
-  { id:"all",  name:"전체" },
-  { id:"mine", name:"내 교정노트" },
-  { id:"pron", name:"발음 주의" },
-  { id:"p2",   name:"Part 2 사진묘사" },
-  { id:"p3",   name:"Part 3 질문답변" },
-  { id:"p4",   name:"Part 4 정보전달" },
-  { id:"p5",   name:"Part 5 의견말하기" },
-  { id:"core", name:"만능 연결어" }
+  { id:"all",    name:"전체" },
+  { id:"myadd",  name:"추가 단어" },
+  { id:"mine",   name:"내 교정노트" },
+  { id:"pron",   name:"발음 주의" },
+  { id:"p2",     name:"Part 2 사진묘사" },
+  { id:"p3",     name:"Part 3 질문답변" },
+  { id:"p4",     name:"Part 4 정보전달" },
+  { id:"p5",     name:"Part 5 의견말하기" },
+  { id:"core",   name:"만능 연결어" },
+  { id:"adj",    name:"형용사" },
+  { id:"adv",    name:"부사" },
+  { id:"work",   name:"직장" },
+  { id:"school", name:"학교" },
+  { id:"tech",   name:"기술" },
+  { id:"shop",   name:"쇼핑" },
+  { id:"house",  name:"주거" },
+  { id:"trend",  name:"트렌드" },
+  { id:"travel", name:"여행" },
+  { id:"env",    name:"환경" }
 ];
 
 const DATA = [
@@ -588,7 +599,299 @@ const DATA = [
 ["pron","믿을 수 있는","reliable","re-LI-a-ble."],
 ["pron","편리한","convenient","con-VEEN-ient."],
 ["pron","쌓여 있는","stacked"],
-["pron","체크무늬 셔츠","a checked shirt"]
+["pron","체크무늬 셔츠","a checked shirt"],
+
+/* ---------- 추가 요청 단어 ---------- */
+["myadd","그 프로그램은 학생들의 동기를 높이는 역할을 합니다.","The program serves to motivate students.","serve to V = ~하는 역할을 하다. 뒤에 동사원형."],
+["myadd","6월 3일까지 등록하셔야 합니다.","You need to register by June 3rd.","register by = ~까지 등록하다(마감). register for = ~에 등록하다(대상). Part 4 단골."],
+["myadd","그 수업은 초보자에게 도움이 되었습니다.","The class was helpful to beginners.","helpful to 사람 / helpful for 일."],
+["myadd","많은 사람들이 버스를 기다리고 있습니다.","Many people are waiting for the bus.","wait은 반드시 for와 함께. 사진묘사에서 자주 씁니다."],
+["myadd","광고는 종종 제품의 효과를 과장합니다.","Advertisements often exaggerate the effects of products.","exaggerate [이그재저레이트] — 두 번째 음절 강세."],
+["myadd","그는 자기 일에 열정적이었습니다.","He was passionate about his job.","passionate [패셔넛] — 첫음절 강세. passionate about이 세트."],
+["myadd","저는 짧은 기간 안에 실력을 향상시켰습니다.","I improved my skills in a short period.","period [피리어드]."],
+["myadd","그는 인기 있는 지역에 카페를 열었습니다.","He opened a café in a popular area.","area [에리어] — 첫음절 강세."],
+["myadd","저는 최근에 새 집으로 이사했습니다.","I recently moved to a new house.","recently는 [리쓴리]보다 [리-슨트-리]에 가깝습니다. 첫음절 강세, t를 살짝 살려주세요."],
+["myadd","우리는 체계적으로 일하는 법을 배울 수 있습니다.","We can learn to work systematically.","systematically [시스터매티컬리] — 세 번째 음절(매)에 강세."],
+["myadd","그녀는 학생들의 고민을 진심으로 들어주었습니다.","She sincerely listened to students' worries.","sincerely [신씨얼리] — 두 번째 음절 강세."],
+["myadd","우리는 영상을 반복해서 볼 수 있습니다.","We can watch the videos repeatedly.","repeatedly [리피티들리] — 두 번째 음절(피) 강세."],
+["myadd","우리는 더 여유롭게 여행할 수 있습니다.","We can travel more leisurely.","미국식은 [리저리], 영국식이 [레저리]입니다. 토스에서는 미국식으로."],
+["myadd","학생들이 자신의 적성을 발견할 수 있습니다.","Students can find their aptitude.","aptitude [앱티튜드] — 첫음절 강세. find an aptitude for A로도 씁니다."],
+["myadd","저는 매일 입시 학원에서 공부했습니다.","I studied at a cram school every day.","cram [크램] = 벼락치기하다. cram school = 입시 학원."],
+["myadd","대학교 등록금이 비쌌습니다.","The university tuition fee was expensive.","tuition [튜이션] — 두 번째 음절 강세. 앞의 t는 [투]보다 [튜]."],
+["myadd","그는 전액 장학금을 받았습니다.","He received a full scholarship.","scholarship [스칼러십] — 첫음절 강세. 전액은 full scholarship."],
+["myadd","새 사무실은 도시 외곽에 위치해 있었습니다.","The new office was located in the suburbs.","suburb [써버브] — 첫음절 강세. 보통 복수 the suburbs로 씁니다."],
+["myadd","그 도시는 매우 이국적이었습니다.","The city was very exotic.","철자는 exotic입니다. [이그자틱] — 두 번째 음절 강세."],
+["myadd","우리는 환경 문제에 대한 인식을 높일 수 있습니다.","We can raise awareness of environmental issues.","awareness [어웨어니스] = 인식. raise awareness of A가 세트."],
+["myadd","그 아파트 단지에는 다양한 편의시설이 있었습니다.","There were various amenities in the apartment complex.","amenities [어메니티즈] — 두 번째 음절 강세. 보통 복수로 씁니다."],
+["myadd","저는 집을 리모델링하는 데 많은 돈을 썼습니다.","I spent a lot of money on remodeling the house.","spend 돈/시간 on A. on 뒤에는 명사나 -ing."],
+["myadd","저는 여행 경비를 절약할 수 있었습니다.","I was able to save money on travel expenses.","save money on A = A에 드는 돈을 아끼다."],
+["myadd","저는 재활용하는 습관을 들일 수 있었습니다.","I was able to develop a habit of recycling.","develop a habit of -ing. 습관이 여러 개면 develop habits of -ing."],
+["myadd","선반에 상자들이 쌓여 있습니다.","Boxes are stacked on the shelves.","쌓여 있는 상태는 are stacked. 사람이 쌓는 중이면 A man is stacking boxes."],
+["myadd","제 동료가 저를 대신해 회의에 참석했습니다.","My colleague attended the meeting on my behalf.","on my behalf = 나를 대신해서. on behalf of A = A를 대표해서."],
+
+/* ---------- 형용사 (기초편 ②) ---------- */
+["adj","저는 강의를 듣는 동안 지루했습니다.","I was bored during the lecture.","사람이 지루함을 느끼면 bored."],
+["adj","그 강의는 지루했습니다.","The lecture was boring.","대상이 지루하게 만들면 boring."],
+["adj","책상과 의자가 편안했습니다.","The desks and chairs were comfortable."],
+["adj","대도시에서 사업을 운영하는 것은 경쟁이 심합니다.","It is competitive to run a business in a big city."],
+["adj","우리는 새로운 규정에 혼란을 겪었습니다.","We got confused by the new rules."],
+["adj","아파트에 사는 것은 편리합니다.","It is convenient to live in an apartment."],
+["adj","그 공원은 사람들로 붐볐습니다.","The park was crowded with people.","crowded with가 세트."],
+["adj","많은 회사들이 창의적인 직원을 선호합니다.","Many companies prefer creative employees."],
+["adj","그는 세부적인 계획을 세웠습니다.","He made a detailed plan."],
+["adj","저는 서비스에 실망했습니다.","I was disappointed with the service."],
+["adj","그 공연은 실망스러웠습니다.","The show was disappointing."],
+["adj","저는 튼튼한 스마트폰이 필요합니다.","I need a durable smartphone."],
+["adj","그것은 스트레스 해소에 효과적입니다.","It is effective in relieving stress."],
+["adj","저는 훌륭한 고객 서비스를 받았습니다.","I received excellent customer service."],
+["adj","그 영화는 흥미진진했습니다.","The movie was exciting."],
+["adj","우리는 경험 많은 직원을 채용했습니다.","We hired an experienced employee."],
+["adj","그 강의는 즐거웠습니다.","The lecture was enjoyable.","enjoyable은 차분한 즐거움, fun은 신나는 즐거움."],
+["adj","그 여행은 정말 재미있었습니다.","The trip was really fun."],
+["adj","그는 자주 재미있는 농담을 했습니다.","He often told funny jokes."],
+["adj","우리는 건강한 식습관을 가질 수 있습니다.","We can have healthy eating habits."],
+["adj","그의 조언은 매우 도움이 되었습니다.","His advice was very helpful."],
+["adj","제 고향에는 역사적인 장소가 많습니다.","My hometown has many historical places."],
+["adj","그녀는 공부에 관심이 없었습니다.","She was not interested in studying."],
+["adj","저는 유명한 현지 식당들을 방문했습니다.","I visited famous local restaurants."],
+["adj","우리는 호화로운 분위기에서 식사할 수 있습니다.","We can have a meal in a luxurious atmosphere."],
+["adj","이것은 현대적인 미술 갤러리의 사진 같습니다.","I think this is a picture of a modern art gallery."],
+["adj","그러실 필요는 없습니다.","That won't be necessary."],
+["adj","저는 면접 전에 많이 긴장했습니다.","I was very nervous before the interview."],
+["adj","한 남자가 오래되어 보이는 건물에 들어가고 있습니다.","A man is entering an old-looking building.","사진묘사용 표현."],
+["adj","그는 자기 일에 열정적이었습니다.","He was passionate about his job."],
+["adj","그는 인기 있는 지역에 카페를 열었습니다.","He opened a café in a popular area."],
+["adj","우리는 인턴십 동안 실용적인 기술을 배울 수 있습니다.","We can learn practical skills during internships."],
+["adj","유튜브에는 전문적인 운동 영상이 많습니다.","There are many professional exercise videos on YouTube."],
+["adj","우리는 조용한 분위기에서 책을 읽을 수 있습니다.","We can read books in a quiet atmosphere."],
+["adj","그 매장은 합리적인 가격에 가구를 판매합니다.","The store sells furniture at a reasonable price."],
+["adj","우리는 여유로운 환경에서 일할 수 있습니다.","We can work in a relaxed environment."],
+["adj","그녀는 책임감이 매우 강했습니다.","She was very responsible."],
+["adj","저는 새 직장에 만족합니다.","I'm satisfied with my new job.","satisfied with가 세트."],
+["adj","그는 많은 심각한 실수를 저질렀습니다.","He made many serious mistakes."],
+["adj","우리는 재정적으로 안정된 삶을 살 수 있습니다.","We can have a financially stable life."],
+["adj","제 기말고사 성적은 끔찍했습니다.","My final exam grades were terrible."],
+["adj","저는 학교에서 항상 피곤했습니다.","I was always tired at school."],
+["adj","우리는 그들의 전통 문화를 경험할 수 있습니다.","We can experience their traditional culture."],
+["adj","그 동물원에는 독특한 동물이 많습니다.","The zoo has many unique animals."],
+["adj","그 스마트폰에는 유용한 기능이 많습니다.","The smartphone has many useful functions."],
+["adj","그녀는 직장에서 다양한 업무를 처리했습니다.","She handled various tasks at work."],
+["adj","잘 알려진 브랜드는 편리한 고객 서비스를 제공합니다.","Well-known brands provide convenient customer service."],
+
+/* ---------- 부사 (기초편 ②) ---------- */
+["adv","그는 자주 식사를 거르곤 했습니다.","He often skipped meals.","often의 f 발음 주의."],
+["adv","저는 가끔 밤을 새웠습니다.","I sometimes stayed up all night."],
+["adv","저는 보통 머릿속을 정리하기 위해 산책을 합니다.","I usually go for a walk to clear my head."],
+["adv","그녀는 사무실에서 거의 말을 하지 않았습니다.","She rarely talked in the office.","rarely 자체가 부정. not을 또 붙이지 않습니다."],
+["adv","저는 실수로 노트북에 커피를 쏟았습니다.","I accidentally spilled coffee on my laptop."],
+["adv","그는 자신의 의견을 분명하게 표현하지 않았습니다.","He didn't express his opinion clearly."],
+["adv","그들은 편안하게 쉴 수 있습니다.","They can rest comfortably."],
+["adv","우리는 편리하게 식료품을 쇼핑할 수 있습니다.","We can shop for groceries conveniently."],
+["adv","그녀는 자신 있게 프레젠테이션을 했습니다.","She gave the presentation confidently."],
+["adv","직원들은 더 창의적으로 일할 수 있습니다.","Employees can work more creatively."],
+["adv","저는 아침 일찍 일어나지 않아도 됩니다.","I don't have to wake up early in the morning."],
+["adv","저는 매일 늦게 잠자리에 들었습니다.","I went to bed late every day."],
+["adv","우리는 스마트폰으로 쉽게 음식을 주문할 수 있습니다.","We can easily order food on a smartphone."],
+["adv","우리는 보너스를 받기 위해 열심히 일했습니다.","We worked hard to get a bonus.","hardly는 '거의 ~않다'라는 전혀 다른 뜻."],
+["adv","우리는 효과적으로 스트레스를 완화할 수 있습니다.","We can effectively relieve stress."],
+["adv","우리는 시간을 더 효율적으로 사용할 수 있습니다.","We can use our time more efficiently."],
+["adv","그는 결국 작년에 그 식당을 닫았습니다.","He eventually closed the restaurant last year."],
+["adv","그녀는 수업을 즐겁게 진행했습니다.","She taught the class enjoyably."],
+["adv","다행히도, 우리는 마감 기한을 지켰습니다.","Fortunately, we met the deadline."],
+["adv","우리는 업무에 빠르게 적응할 수 있습니다.","We can adapt to our work quickly."],
+["adv","우리는 자유롭게 의견을 표현할 수 있었습니다.","We were able to express our opinions freely."],
+["adv","제 성적이 점점 향상되었습니다.","My grades improved gradually."],
+["adv","그는 자신의 실수를 솔직하게 보고했습니다.","He reported his mistake honestly."],
+["adv","우리는 더 여유롭게 여행할 수 있습니다.","We can travel more leisurely."],
+["adv","그는 불만사항을 능숙하게 처리했습니다.","He handled complaints professionally."],
+["adv","저는 최근에 새 집으로 이사했습니다.","I recently moved to a new house."],
+["adv","저는 건강을 유지하기 위해 규칙적으로 운동합니다.","I exercise regularly to stay healthy."],
+["adv","우리는 영상을 반복해서 볼 수 있습니다.","We can watch the videos repeatedly."],
+["adv","그녀는 학생들의 고민을 진심으로 들어주었습니다.","She sincerely listened to students' worries."],
+["adv","구체적으로 말하면, 우리는 출퇴근 시간을 절약할 수 있습니다.","Specifically, we can save time on commuting.","Part 5에서 근거를 좁힐 때 쓰기 좋은 연결어."],
+["adv","우리는 체계적으로 일하는 법을 배울 수 있습니다.","We can learn to work systematically."],
+
+/* ---------- 직장 ---------- */
+["work","저는 1년간 구직 활동을 했습니다.","I looked for a job for a year."],
+["work","대부분의 구직자들은 대기업을 선호합니다.","Most job seekers prefer large companies."],
+["work","저는 혼자서 취업 면접을 준비했습니다.","I prepared for a job interview alone."],
+["work","그는 쉽게 취업을 했습니다.","He got a job easily."],
+["work","그녀는 교육 회사에 들어갔습니다.","She entered an education company."],
+["work","그녀는 온라인 쇼핑몰을 차렸습니다.","She started an online shopping mall."],
+["work","그녀는 거의 매일 야근을 했습니다.","She worked overtime almost every day."],
+["work","그녀는 팀 매니저로 승진했습니다.","She got promoted to the team manager."],
+["work","그는 해고되었습니다.","He got fired."],
+["work","그녀는 지난 달에 퇴사했습니다.","She quit the job last month."],
+["work","저는 주로 지하철로 출근합니다.","I usually go to work by subway."],
+["work","그는 업무 중에 자주 실수를 했습니다.","He often made mistakes while working."],
+["work","우리는 고객들로부터 많은 컴플레인을 받았습니다.","We received many complaints from customers."],
+["work","그는 혼자서 여러 업무를 했습니다.","He did various tasks alone."],
+["work","저는 회사에 자주 지각했습니다.","I was often late for work."],
+["work","그는 작년에 이직했습니다.","He changed jobs last year.","이직은 항상 복수 jobs."],
+["work","저는 스타트업 회사에서 인턴 근무를 했습니다.","I interned at a start-up company."],
+["work","대기업에는 다양한 직원 혜택이 있습니다.","Large companies have various employee benefits."],
+["work","그녀는 높은 월급을 받았습니다.","She received a high salary."],
+["work","매출이 많이 늘었습니다.","The sales increased a lot."],
+["work","저는 자주 출장을 갔습니다.","I often went on business trips."],
+["work","그는 런던으로 휴가를 갔습니다.","He went on a vacation to London."],
+["work","저는 점심시간에 산책을 합니다.","I take a walk during lunch break."],
+["work","저의 근무 시간은 매우 길었습니다.","My working hours were very long."],
+["work","우리는 제 시간에 프로젝트를 마쳤습니다.","We finished the project in time."],
+["work","우리는 마감기한을 지키지 못했습니다.","We couldn't meet the deadline.","마감을 지키다는 meet the deadline."],
+["work","저는 매일 아침 화상 통화를 했습니다.","I had a video call every morning."],
+["work","우리는 직장에서 인간관계를 넓힐 수 있습니다.","We can expand our social network at work."],
+["work","그녀는 훌륭한 인사 평가를 받았습니다.","She received an excellent performance evaluation."],
+["work","우리 회사는 경력직 사원 두 명을 채용했습니다.","Our company hired two experienced employees."],
+["work","우리 회사는 유연근무제를 도입했습니다.","Our company introduced a flexible work system."],
+
+/* ---------- 학교 ---------- */
+["school","공부에 집중하기가 어려웠습니다.","It was hard to focus on my studies."],
+["school","저는 시험 전에 많은 스트레스를 받았습니다.","I was under a lot of stress before exams."],
+["school","학생들은 공부로 인한 스트레스를 해소할 수 있습니다.","Students can relieve stress from studies."],
+["school","그들은 다른 학생들로부터 동기부여를 받을 수 있습니다.","They can be motivated by other students."],
+["school","저는 공부에 흥미를 잃었습니다.","I lost interest in studying."],
+["school","어린 아이들은 자제력이 부족합니다.","Young children lack self-control."],
+["school","저는 수업 중에 피드백을 자주 받았습니다.","I often received feedback in class."],
+["school","저는 집에서 온라인 수업을 들었습니다.","I took an online class at home."],
+["school","저는 박물관으로 현장 학습을 갔습니다.","I went on a field trip to a museum."],
+["school","저는 고등학생 때 많은 친구들을 사귈 수 있었습니다.","I was able to make many friends in high school."],
+["school","그는 대부분의 학생들과 잘 지냈습니다.","He got along well with most of the students."],
+["school","저는 다른 학생들과 협력하는 방법을 배웠습니다.","I learned how to cooperate with other students."],
+["school","학생들은 환경의 중요성을 배울 필요가 있습니다.","Students need to learn the importance of the environment."],
+["school","학생들은 학교에서 대인관계 기술을 배울 수 있습니다.","Students can learn interpersonal skills at school."],
+["school","그녀는 수학 실력을 빠르게 향상시켰습니다.","She improved her math skills quickly."],
+["school","학생들은 더 나은 교육을 받을 수 있습니다.","Students can get a better education."],
+["school","전자 기기는 학생들이 공부하는 것을 방해할 수 있습니다.","Electronic devices can distract students from studying.","distract A from -ing."],
+["school","그들은 좋은 공부 습관들을 기를 수 있습니다.","They can develop good study habits."],
+["school","학생들이 자신의 적성을 발견할 수 있습니다.","Students can find their aptitude."],
+["school","그 수업은 학생들이 진로를 선택하는 데 도움이 되었습니다.","The class helped students choose a career path."],
+["school","그는 쉽게 시험에 합격했습니다.","He passed the exam easily."],
+["school","저는 고등학교 때 교복을 입었습니다.","I wore a school uniform in high school."],
+["school","저는 매일 입시 학원에서 공부했습니다.","I studied at a cram school every day."],
+["school","저는 아이패드에 필기를 했습니다.","I took notes on my iPad."],
+["school","저는 일주일에 한 번 봉사활동을 했습니다.","I did volunteer work once a week."],
+["school","저는 좋은 대학에 들어갈 수 있었습니다.","I could get into a good university."],
+["school","그녀는 회계학을 전공했습니다.","She majored in accounting.","major in A."],
+["school","저는 학교에 버스로 통학했습니다.","I commuted to university by bus."],
+["school","저는 과제가 많았습니다.","I had a lot of assignments."],
+["school","대학교 등록금이 비쌌습니다.","The university tuition fee was expensive."],
+["school","저는 기말고사에서 좋은 성적을 받았습니다.","I got good grades on the final exam."],
+["school","성적이 많이 떨어졌습니다.","My grades decreased a lot."],
+["school","그는 전액 장학금을 받았습니다.","He received a full scholarship."],
+["school","저는 학기 동안 아르바이트를 했습니다.","I worked part-time during the semesters."],
+["school","저는 농구 동아리에 가입했습니다.","I joined a basketball club."],
+["school","그는 영국에서 유학을 했습니다.","He studied abroad in England."],
+["school","저는 외국어 학원에 등록했습니다.","I registered for a language school."],
+["school","그녀는 다양한 자격증을 땄습니다.","She earned various certificates."],
+
+/* ---------- 기술 ---------- */
+["tech","우리는 언제 어디서나 정보를 검색할 수 있습니다.","We can search for information anytime, anywhere."],
+["tech","우리는 장소에 상관없이 온라인 쇼핑을 할 수 있습니다.","We can shop online regardless of location."],
+["tech","저는 스마트폰으로 호텔을 예약했습니다.","I booked a hotel on my smartphone."],
+["tech","저는 스마트폰을 사용해서 은행 업무를 봅니다.","I do banking using my smartphone."],
+["tech","우리는 매장에서 스마트폰으로 결제할 수 있습니다.","We can pay with a smartphone at stores."],
+["tech","우리는 최신 기술을 사용함으로써 시간을 절약할 수 있습니다.","We can save time by using the latest technology."],
+["tech","우리는 실시간으로 교통정보를 확인할 수 있습니다.","We can check traffic information in real time."],
+["tech","저는 미리 좌석을 예약할 수 있었습니다.","I was able to reserve a seat in advance."],
+["tech","저는 쉬는 시간에 인터넷을 검색합니다.","I browse the internet during my break."],
+["tech","우리 회사에서는 직원들이 정기적으로 재택근무를 합니다.","In our company, employees work from home regularly."],
+["tech","많은 학생들이 효율적으로 공부하기 위해 AI 프로그램을 사용합니다.","Many students use AI programs to study efficiently."],
+["tech","학생들은 라이브 온라인 수업에서 질문할 수 있습니다.","Students can ask questions in live online classes."],
+["tech","스마트 기기는 삶의 질을 높일 수 있습니다.","Smart devices can improve the quality of life."],
+["tech","인공지능이 인간을 빠르게 대체하고 있습니다.","AI is replacing humans quickly."],
+["tech","많은 기업들이 제품을 홍보하기 위해 소셜 미디어를 사용합니다.","Many businesses use social media to promote products."],
+["tech","요즘은 전기차 충전소를 찾기가 쉽습니다.","It is easy to find charging stations for electric cars these days."],
+["tech","우리는 몇 번의 클릭만으로 물건을 살 수 있습니다.","We can buy things with just a few clicks."],
+["tech","우리는 더 효율적으로 일할 수 있습니다.","We can work more efficiently."],
+["tech","스마트 기기는 일상에서 매우 유용합니다.","Smart devices are very useful in our daily lives."],
+["tech","저는 최신 정보를 얻을 수 있습니다.","I can get the latest information."],
+["tech","그 회사는 근무 시간을 줄였습니다.","The company reduced working hours."],
+["tech","저는 짧은 영상을 자주 봅니다.","I often watch short videos."],
+["tech","저는 짧은 시간에 많은 것을 배웠습니다.","I learned a lot in a short time."],
+
+/* ---------- 쇼핑 ---------- */
+["shop","저는 20% 할인을 받았습니다.","I got a 20% discount."],
+["shop","그들은 더 큰 할인을 제공해야 합니다.","They should offer a bigger discount."],
+["shop","그들은 합리적인 가격에 화장품을 판매합니다.","They sell cosmetics at a reasonable price."],
+["shop","저는 적립금을 많이 받았습니다.","I earned a lot of membership points."],
+["shop","다양한 브랜드를 비교하기 편리합니다.","It is convenient to compare various brands."],
+["shop","그들은 다양한 판촉 행사를 진행했습니다.","They held various promotional events."],
+["shop","그들은 무료 배송 서비스를 제공합니다.","They offer free shipping service."],
+["shop","직원들이 훌륭한 고객 서비스를 제공했습니다.","The staff provided excellent customer service."],
+["shop","저는 주로 동네 서점에서 책을 구입합니다.","I usually buy books at a local bookstore."],
+["shop","저는 직접 옷을 입어볼 수 있습니다.","I can try on clothes in person."],
+["shop","저는 그것을 새 제품으로 교환했습니다.","I exchanged it for a new product.","exchange A for B."],
+["shop","저는 그 책을 환불 받았습니다.","I got a refund for the book."],
+["shop","저는 그 티셔츠를 반품했습니다.","I returned the t-shirt."],
+["shop","저는 한 장소에서 쇼핑할 수 있습니다.","I can shop in one place."],
+["shop","그 가방은 항상 품절이었습니다.","The bag was always sold out."],
+["shop","저는 한 시간 정도 줄을 서서 기다렸습니다.","I waited in line for about an hour."],
+["shop","온라인 광고에는 허위 정보가 많습니다.","There is a lot of false information in online advertisements."],
+["shop","저는 그 가방을 구매할 여유가 없었습니다.","I could not afford the bag.","afford는 can/could와 세트."],
+
+/* ---------- 주거 ---------- */
+["house","도심지에서는 대중교통을 이용하기 편리합니다.","It is convenient to use public transportation in the downtown area."],
+["house","시골에서는 의료 서비스를 받기가 어렵습니다.","It is difficult to get medical services in the countryside."],
+["house","새 사무실은 도시 외곽에 위치해 있었습니다.","The new office was located in the suburbs."],
+["house","요즘에는 많은 사람들이 이웃들과 말을 하지 않습니다.","These days, many people don't talk to their neighbors."],
+["house","우리 동네에 큰 공원이 있습니다.","There is a large park in my neighborhood."],
+["house","그 아파트 단지에는 다양한 편의시설이 있었습니다.","There were various amenities in the apartment complex."],
+["house","저는 원룸 아파트에 살았었습니다.","I used to live in a studio apartment."],
+["house","한국에는 단독주택이 많지 않습니다.","There are not many single-family houses in Korea."],
+["house","월세와 공과금이 너무 비쌌습니다.","The monthly rent and utility bills were too expensive."],
+["house","저는 집을 리모델링하는 데 많은 돈을 썼습니다.","I spent a lot of money on remodeling the house."],
+["house","저희 집은 사무실에서 가깝습니다.","My house is close to my office."],
+["house","저는 층간소음으로 고생했습니다.","I suffered from the noise upstairs."],
+["house","생활비가 많이 들었습니다.","The living expenses were high."],
+["house","우리는 자연 속에서 휴식할 수 있습니다.","We can relax in nature."],
+["house","저는 친환경적인 제품을 선호합니다.","I prefer eco-friendly products."],
+
+/* ---------- 트렌드 ---------- */
+["trend","요즘 많은 사람들이 디지털 지갑을 사용합니다.","Many people use digital wallets nowadays."],
+["trend","많은 아이들이 더 이상 밖에서 놀지 않습니다.","Many children don't play outside anymore."],
+["trend","저는 수업 시간에 손으로 필기를 하곤 했습니다.","I used to take notes by hand in class.","used to V = 과거에 ~하곤 했다."],
+["trend","젊은 사람들은 TV보다 스트리밍 서비스를 선호합니다.","Young people prefer streaming services over TV.","prefer A over B."],
+["trend","친환경 제품이 인기를 얻고 있습니다.","Eco-friendly products are gaining popularity."],
+["trend","종이 책들이 젊은 사람들 사이에서 인기를 잃고 있습니다.","Paper books are losing popularity among young people."],
+["trend","전기차 시장이 한국에서 빠르게 성장하고 있습니다.","The electric car market is growing fast in Korea."],
+["trend","한국의 출산율이 둔화되고 있습니다.","The birth rate is slowing down in Korea."],
+["trend","집에서 요리하는 것이 다시 유행하고 있습니다.","Cooking at home is becoming trendy again."],
+["trend","점점 더 많은 사람들이 자신의 건강에 관심을 가지고 있습니다.","More and more people are taking an interest in their health."],
+["trend","많은 사람들이 패키지여행에 참여하는 대신 자유여행을 합니다.","Many people travel independently instead of joining package tours."],
+["trend","혼자 사는 사람들의 수가 늘어나고 있습니다.","The number of people living alone is increasing.","Part 5에서 사회 변화를 말할 때 쓰는 뼈대 문장."],
+
+/* ---------- 여행 ---------- */
+["travel","저는 태국으로 여행을 갔습니다.","I went on a trip to Thailand."],
+["travel","저는 중국으로 패키지 여행을 갔습니다.","I went on a package tour to China."],
+["travel","그는 스페인으로 휴가를 갔습니다.","He went on a vacation to Spain."],
+["travel","저는 파리에서 가이드 투어를 했습니다.","I took a guided tour in Paris."],
+["travel","저는 일 년에 한 번 정도 해외여행을 합니다.","I travel abroad about once a year.","abroad 앞에 to를 붙이지 않습니다."],
+["travel","우리는 더 이상 여행 가이드북이 필요하지 않습니다.","We don't need travel guidebooks anymore."],
+["travel","저는 목적지에 빨리 도착할 수 있습니다.","I can get to my destination quickly."],
+["travel","저는 자주 길을 잃었습니다.","I got lost often."],
+["travel","저는 길을 찾기 위해 스마트폰을 사용합니다.","I use a smartphone to find my way."],
+["travel","저는 짧은 시간 동안 많은 관광지를 방문했습니다.","I visited many tourist attractions in a short time."],
+["travel","우리는 아름다운 야경을 즐길 수 있습니다.","We can enjoy a beautiful night view."],
+["travel","저는 많은 현지인들을 만났습니다.","I met a lot of locals."],
+["travel","저는 다양한 현지 음식을 즐겼습니다.","I enjoyed a variety of local foods."],
+["travel","그 도시는 매우 이국적이었습니다.","The city was very exotic."],
+["travel","물가가 너무 비쌌습니다.","The cost of living was too high."],
+["travel","저는 여행 경비를 절약할 수 있었습니다.","I was able to save money on travel expenses."],
+
+/* ---------- 환경 ---------- */
+["env","저는 환경 오염에 별로 관심이 없었습니다.","I wasn't very interested in environmental pollution."],
+["env","저는 재사용 장바구니 같은 친환경 제품을 사용합니다.","I use eco-friendly products such as a reusable bag."],
+["env","그 이후로, 저는 보통 에너지 효율이 좋은 제품을 삽니다.","Since then, I usually buy energy-efficient products."],
+["env","저는 재활용하는 습관을 들일 수 있었습니다.","I was able to develop a habit of recycling."],
+["env","우리는 전기차를 이용함으로써 대기 오염을 줄일 수 있습니다.","We can reduce air pollution by using electric cars."],
+["env","우리는 환경 문제에 대한 인식을 높일 수 있습니다.","We can raise awareness of environmental issues."],
+["env","우리는 일회용품을 더 적게 사용해야 합니다.","We should use fewer disposable products."],
+["env","우리는 환경을 보호하는 법을 배웠습니다.","We learned how to protect the environment."],
+["env","그렇게 함으로써, 우리는 쓰레기를 줄일 수 있습니다.","By doing so, we can reduce waste.","Part 5 마무리 직전에 쓰기 좋은 연결 문장."],
+["env","수질 오염은 요즘 점점 심각한 문제가 되고 있습니다.","Water pollution is becoming a serious issue nowadays."],
+["env","그 강은 심하게 오염되어 있었습니다.","The river was heavily polluted."],
+["env","그들은 환경오염의 심각성을 깨달을 수 있습니다.","They can realize the seriousness of environmental pollution."],
+["env","우리는 아파트 단지를 깨끗하게 유지할 수 있었습니다.","We were able to keep our apartment complex clean.","keep A clean."]
 ];
 
 /* ------------------------------------------------------------------
@@ -630,12 +933,25 @@ function rec(card){
 /* ------------------------------------------------------------------
    DECK + WEIGHTED PICK
 ------------------------------------------------------------------ */
+// 같은 영어 문장이 여러 덱에 있을 수 있다(요청 단어가 주제별 문장과 겹치는 경우).
+// 진도는 영어 문장 기준으로 저장되므로, "전체"에서는 한 번만 출제해 가중치가 두 배로
+// 걸리지 않게 한다. 해설이 붙은 쪽을 남긴다. 개별 덱은 원본 그대로 유지.
+const ALL_CARDS = (() => {
+  const pick = new Map();
+  for (const c of CARDS){
+    const prev = pick.get(c.en);
+    if (!prev || (!prev.note && c.note)) pick.set(c.en, c);
+  }
+  return [...pick.values()];
+})();
+
 function deckCards(){
-  return state.deck === "all" ? CARDS : CARDS.filter(c => c.cat === state.deck);
+  return state.deck === "all" ? ALL_CARDS : CARDS.filter(c => c.cat === state.deck);
 }
 
-// Level 0 (틀림) → 5 (숙달). 최고:최저 ≈ 3.5:1 — 치우치지 않게 완만한 곡선.
-const LEVEL_WEIGHT = [3.0, 2.4, 1.9, 1.5, 1.2, 0.85];
+// Level 0 (틀림) → 5 (숙달). 최고:최저 ≈ 2.4:1 — 약한 카드를 확실히 더 자주 보되,
+// 덱이 400장으로 커져도 외운 카드가 사라지지 않도록 완만하게 둔다.
+const LEVEL_WEIGHT = [2.2, 1.9, 1.6, 1.35, 1.1, 0.9];
 
 function weightOf(card){
   if (!state.weighted) return 1;
@@ -731,7 +1047,7 @@ function toast(msg){
 function buildDecks(){
   el.decks.innerHTML = "";
   DECKS.forEach(d => {
-    const n = d.id === "all" ? CARDS.length : CARDS.filter(c => c.cat === d.id).length;
+    const n = d.id === "all" ? ALL_CARDS.length : CARDS.filter(c => c.cat === d.id).length;
     const b = document.createElement("button");
     b.className = "chip";
     b.type = "button";

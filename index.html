@@ -1,0 +1,908 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="토익스피킹 만능문장을 한글 뜻만 보고 영어로 말해보는 스피킹 암기 카드. 틀린 문장이 더 자주 나오고, 정답은 원어민 발음으로 들을 수 있습니다.">
+<meta name="theme-color" content="#ECEFEA" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E1513" media="(prefers-color-scheme: dark)">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="토스 카드">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=&apos;http://www.w3.org/2000/svg&apos; viewBox=&apos;0 0 100 100&apos;%3E%3Crect width=&apos;100&apos; height=&apos;100&apos; rx=&apos;22&apos; fill=&apos;%230E6E62&apos;/%3E%3Ctext x=&apos;50&apos; y=&apos;68&apos; font-size=&apos;52&apos; font-family=&apos;ui-monospace,monospace&apos; font-weight=&apos;600&apos; fill=&apos;white&apos; text-anchor=&apos;middle&apos;%3ETS%3C/text%3E%3C/svg%3E">
+<title>토스 스피킹 카드</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Literata:opsz,wght@7..72,400;7..72,500;7..72,600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  color-scheme: light;
+  --paper:#ECEFEA;
+  --surface:#FFFFFF;
+  --surface-2:#F4F7F2;
+  --ink:#16201D;
+  --ink-soft:#3C4A45;
+  --muted:#5F6E68;
+  --line:#D7DED7;
+  --line-soft:#E4E9E2;
+  --accent:#0E6E62;
+  --accent-ink:#FFFFFF;
+  --accent-soft:#DCEAE6;
+  --ember:#B84A1C;
+  --ember-ink:#FFFFFF;
+  --ember-soft:#F6E3D9;
+  --shadow:0 1px 2px rgba(22,32,29,.05), 0 10px 28px -14px rgba(22,32,29,.22);
+  --radius:18px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme: dark;
+    --paper:#0E1513;
+    --surface:#18211E;
+    --surface-2:#1E2825;
+    --ink:#E4E9E4;
+    --ink-soft:#B6C2BD;
+    --muted:#8A9994;
+    --line:#2B3733;
+    --line-soft:#232E2B;
+    --accent:#45B8A3;
+    --accent-ink:#06201C;
+    --accent-soft:#123832;
+    --ember:#E5895E;
+    --ember-ink:#2A1206;
+    --ember-soft:#3A2318;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 12px 32px -16px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --paper:#0E1513;
+  --surface:#18211E;
+  --surface-2:#1E2825;
+  --ink:#E4E9E4;
+  --ink-soft:#B6C2BD;
+  --muted:#8A9994;
+  --line:#2B3733;
+  --line-soft:#232E2B;
+  --accent:#45B8A3;
+  --accent-ink:#06201C;
+  --accent-soft:#123832;
+  --ember:#E5895E;
+  --ember-ink:#2A1206;
+  --ember-soft:#3A2318;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 12px 32px -16px rgba(0,0,0,.7);
+}
+
+*{ box-sizing:border-box; }
+html,body{ height:100%; }
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"IBM Plex Sans KR", system-ui, -apple-system, "Malgun Gothic", sans-serif;
+  -webkit-text-size-adjust:100%;
+  overflow:hidden;
+}
+button{ font:inherit; color:inherit; }
+
+.app{
+  height:100dvh;
+  max-width:34rem;
+  margin:0 auto;
+  padding:0 clamp(.9rem,4vw,1.4rem);
+  display:flex;
+  flex-direction:column;
+  gap:.7rem;
+}
+
+/* ---------- top rail ---------- */
+.rail{
+  display:flex; align-items:center; gap:.6rem;
+  padding:.85rem 0 .1rem;
+}
+.mark{
+  font-family:"IBM Plex Mono", ui-monospace, monospace;
+  font-size:.68rem; font-weight:600; letter-spacing:.12em;
+  color:var(--accent-ink); background:var(--accent);
+  padding:.3rem .45rem; border-radius:7px;
+}
+.rail h1{
+  margin:0; font-size:.95rem; font-weight:600; letter-spacing:-.01em;
+  flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+.counter{
+  font-family:"IBM Plex Mono", ui-monospace, monospace;
+  font-size:.72rem; color:var(--muted); font-variant-numeric:tabular-nums;
+  white-space:nowrap;
+}
+.counter b{ color:var(--ink); font-weight:600; }
+.icon-btn{
+  width:2.05rem; height:2.05rem; flex:none;
+  display:grid; place-items:center;
+  background:var(--surface); border:1px solid var(--line);
+  border-radius:9px; cursor:pointer; color:var(--ink-soft);
+  transition:border-color .15s, color .15s;
+}
+.icon-btn:hover{ color:var(--ink); border-color:var(--muted); }
+.icon-btn svg{ width:16px; height:16px; }
+
+/* ---------- deck chips ---------- */
+.decks{
+  display:flex; gap:.35rem; overflow-x:auto; padding-bottom:.15rem;
+  scrollbar-width:none; -ms-overflow-style:none;
+}
+.decks::-webkit-scrollbar{ display:none; }
+.chip{
+  flex:none; cursor:pointer;
+  padding:.4rem .7rem; border-radius:999px;
+  border:1px solid var(--line); background:var(--surface);
+  font-size:.78rem; font-weight:500; color:var(--ink-soft);
+  white-space:nowrap; transition:background .15s, color .15s, border-color .15s;
+}
+.chip:hover{ border-color:var(--muted); }
+.chip[aria-pressed="true"]{
+  background:var(--accent); border-color:var(--accent); color:var(--accent-ink); font-weight:600;
+}
+.chip .n{
+  font-family:"IBM Plex Mono", ui-monospace, monospace;
+  font-size:.68rem; opacity:.62; margin-left:.28rem; font-variant-numeric:tabular-nums;
+}
+
+/* ---------- mastery bar ---------- */
+.mastery{
+  display:flex; align-items:center; gap:.55rem;
+  font-family:"IBM Plex Mono", ui-monospace, monospace;
+  font-size:.66rem; color:var(--muted); font-variant-numeric:tabular-nums;
+}
+.mastery .track{
+  flex:1; height:3px; border-radius:2px; background:var(--line-soft); overflow:hidden;
+}
+.mastery .fill{
+  height:100%; width:0%; background:var(--accent);
+  transition:width .45s cubic-bezier(.22,.7,.3,1);
+}
+
+/* ---------- card ---------- */
+.stage{ flex:1; min-height:0; display:flex; }
+.card{
+  flex:1; position:relative;
+  display:flex; flex-direction:column;
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:1.15rem 1.25rem 1.25rem 1.5rem;
+  cursor:pointer; overflow:hidden;
+  transition:border-color .15s;
+}
+.card:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
+/* mastery rail — ::before is the empty track, ::after the fill on top of it.
+   Fill height encodes this card's level (0–5), so the rail reports progress. */
+.card::before{
+  content:""; position:absolute; left:0; top:0; bottom:0; width:3px;
+  background:var(--line-soft);
+}
+.card::after{
+  content:""; position:absolute; left:0; bottom:0; width:3px;
+  height:var(--lvl, 0%); background:var(--accent); opacity:.85;
+  transition:height .4s cubic-bezier(.22,.7,.3,1);
+}
+
+.tag{
+  font-family:"IBM Plex Mono", ui-monospace, monospace;
+  font-size:.64rem; font-weight:500; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--muted); display:flex; align-items:center; gap:.5rem;
+}
+.tag .dot{ width:4px; height:4px; border-radius:50%; background:var(--muted); }
+.tag .lvl{ color:var(--accent); }
+
+.body{
+  flex:1; min-height:0; display:flex; flex-direction:column; justify-content:center;
+  gap:1rem; padding:.6rem 0; overflow-y:auto;
+}
+.ko{
+  font-size:clamp(1.35rem, 5.6vw, 1.9rem);
+  font-weight:600; line-height:1.45; letter-spacing:-.02em;
+  text-wrap:balance; margin:0;
+  transition:font-size .3s cubic-bezier(.22,.7,.3,1), color .3s;
+}
+.card.is-open .ko{
+  font-size:.92rem; font-weight:500; color:var(--muted); letter-spacing:0;
+}
+.answer{ display:none; flex-direction:column; gap:.85rem; }
+.card.is-open .answer{ display:flex; animation:rise .32s cubic-bezier(.22,.7,.3,1) both; }
+@keyframes rise{ from{ opacity:0; transform:translateY(9px); } to{ opacity:1; transform:none; } }
+.en{
+  font-family:"Literata", Georgia, "Times New Roman", serif;
+  font-size:clamp(1.3rem, 5.1vw, 1.75rem);
+  font-weight:500; line-height:1.5; letter-spacing:-.008em;
+  margin:0; text-wrap:pretty;
+}
+.note{
+  font-size:.8rem; line-height:1.6; color:var(--ink-soft);
+  background:var(--surface-2); border-left:2px solid var(--accent);
+  padding:.55rem .7rem; border-radius:0 8px 8px 0; margin:0;
+}
+
+/* audio row */
+.audio{ display:flex; align-items:center; gap:.45rem; flex-wrap:wrap; }
+.play{
+  display:inline-flex; align-items:center; gap:.45rem; cursor:pointer;
+  padding:.5rem .85rem .5rem .7rem; border-radius:999px;
+  background:var(--accent-soft); border:1px solid transparent; color:var(--accent);
+  font-size:.82rem; font-weight:600;
+  transition:filter .15s;
+}
+.play:hover{ filter:brightness(.96); }
+.play svg{ width:15px; height:15px; }
+.play.is-speaking{ border-color:var(--accent); }
+.rate{ display:flex; gap:2px; background:var(--surface-2); border-radius:999px; padding:2px; }
+.rate button{
+  cursor:pointer; border:0; background:transparent; color:var(--muted);
+  font-family:"IBM Plex Mono", ui-monospace, monospace;
+  font-size:.7rem; font-weight:500; padding:.32rem .5rem; border-radius:999px;
+  font-variant-numeric:tabular-nums;
+}
+.rate button[aria-pressed="true"]{ background:var(--surface); color:var(--ink); box-shadow:0 1px 2px rgba(0,0,0,.08); }
+
+.hint{
+  position:absolute; left:0; right:0; bottom:.85rem;
+  text-align:center; font-size:.72rem; color:var(--muted);
+  pointer-events:none; transition:opacity .2s;
+}
+.card.is-open .hint{ opacity:0; }
+
+/* ---------- action row ---------- */
+.actions{ display:grid; grid-template-columns:1fr 1fr; gap:.5rem; padding-bottom:max(.9rem, env(safe-area-inset-bottom)); }
+.act{
+  cursor:pointer; border-radius:14px; border:1px solid var(--line);
+  background:var(--surface); padding:.95rem .5rem;
+  display:flex; flex-direction:column; align-items:center; gap:.12rem;
+  transition:transform .1s, background .15s, border-color .15s, color .15s;
+}
+.act:active{ transform:scale(.985); }
+.act strong{ font-size:.95rem; font-weight:600; }
+.act span{
+  font-family:"IBM Plex Mono", ui-monospace, monospace;
+  font-size:.62rem; letter-spacing:.06em; color:var(--muted);
+}
+.act.again:hover{ background:var(--ember-soft); border-color:var(--ember); color:var(--ember); }
+.act.got:hover{ background:var(--accent-soft); border-color:var(--accent); color:var(--accent); }
+.act:disabled{ opacity:.4; cursor:default; }
+.act:disabled:hover{ background:var(--surface); border-color:var(--line); color:var(--ink); }
+
+/* ---------- settings sheet ---------- */
+.scrim{
+  position:fixed; inset:0; background:rgba(10,16,14,.42);
+  display:none; align-items:flex-end; justify-content:center; z-index:20;
+  padding:1rem;
+}
+.scrim.is-open{ display:flex; }
+.sheet{
+  width:100%; max-width:34rem; background:var(--surface);
+  border:1px solid var(--line); border-radius:20px; padding:1.15rem;
+  box-shadow:var(--shadow); display:flex; flex-direction:column; gap:.15rem;
+  animation:sheetUp .26s cubic-bezier(.22,.7,.3,1) both;
+}
+@keyframes sheetUp{ from{ transform:translateY(14px); opacity:0; } to{ transform:none; opacity:1; } }
+.sheet h2{ margin:0 0 .5rem; font-size:.95rem; font-weight:600; }
+.row{
+  display:flex; align-items:center; justify-content:space-between; gap:1rem;
+  padding:.7rem 0; border-top:1px solid var(--line-soft);
+}
+.row:first-of-type{ border-top:0; }
+.row .label{ font-size:.85rem; }
+.row .sub{ display:block; font-size:.72rem; color:var(--muted); margin-top:.15rem; line-height:1.5; }
+.toggle{
+  position:relative; width:44px; height:25px; flex:none; cursor:pointer;
+  border-radius:999px; border:1px solid var(--line); background:var(--surface-2);
+  transition:background .18s, border-color .18s;
+}
+.toggle::after{
+  content:""; position:absolute; top:2px; left:2px; width:19px; height:19px;
+  border-radius:50%; background:var(--muted); transition:transform .18s, background .18s;
+}
+.toggle[aria-pressed="true"]{ background:var(--accent); border-color:var(--accent); }
+.toggle[aria-pressed="true"]::after{ transform:translateX(19px); background:var(--accent-ink); }
+.danger{
+  margin-top:.75rem; cursor:pointer; width:100%;
+  padding:.7rem; border-radius:11px; border:1px solid var(--line);
+  background:transparent; color:var(--ember); font-size:.83rem; font-weight:600;
+}
+.danger:hover{ background:var(--ember-soft); border-color:var(--ember); }
+.close{
+  margin-top:.4rem; cursor:pointer; width:100%;
+  padding:.75rem; border-radius:11px; border:0;
+  background:var(--accent); color:var(--accent-ink); font-size:.88rem; font-weight:600;
+}
+
+.toast{
+  position:fixed; left:50%; bottom:5.5rem; transform:translate(-50%, 10px);
+  background:var(--ink); color:var(--paper); font-size:.8rem;
+  padding:.55rem .9rem; border-radius:999px; opacity:0; pointer-events:none;
+  transition:opacity .2s, transform .2s; z-index:30; max-width:90vw; text-align:center;
+}
+.toast.is-on{ opacity:1; transform:translate(-50%, 0); }
+
+@media (prefers-reduced-motion: reduce){
+  *{ animation-duration:.01ms !important; transition-duration:.01ms !important; }
+}
+@media (min-width:600px){
+  .hint::after{ content:"  ·  스페이스로 확인, 1 다시 / 2 알았어"; }
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="rail">
+    <span class="mark">TS</span>
+    <h1>토스 스피킹 카드</h1>
+    <span class="counter" id="counter">0장 · 정답률 —</span>
+    <button class="icon-btn" id="openSettings" aria-label="설정 열기">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.6 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9v0a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+    </button>
+  </div>
+
+  <nav class="decks" id="decks" aria-label="덱 선택"></nav>
+
+  <div class="mastery">
+    <span id="masteryLabel">숙달 0%</span>
+    <span class="track"><span class="fill" id="masteryFill"></span></span>
+    <span id="masteryCount">0/0</span>
+  </div>
+
+  <div class="stage">
+    <article class="card" id="card" role="button" tabindex="0" aria-label="탭하면 정답이 보입니다">
+      <div class="tag" id="tag"></div>
+      <div class="body">
+        <p class="ko" id="ko">불러오는 중…</p>
+        <div class="answer">
+          <p class="en" id="en"></p>
+          <div class="audio">
+            <button class="play" id="play" aria-label="영어 문장 발음 듣기">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+              발음 듣기
+            </button>
+            <div class="rate" id="rate" role="group" aria-label="재생 속도">
+              <button data-rate="0.7" aria-pressed="false">0.7x</button>
+              <button data-rate="0.85" aria-pressed="true">0.85x</button>
+              <button data-rate="1" aria-pressed="false">1.0x</button>
+            </div>
+          </div>
+          <p class="note" id="note" hidden></p>
+        </div>
+      </div>
+      <div class="hint">탭해서 정답 확인</div>
+    </article>
+  </div>
+
+  <div class="actions">
+    <button class="act again" id="btnAgain" disabled><strong>다시</strong><span>AGAIN</span></button>
+    <button class="act got" id="btnGot" disabled><strong>알았어</strong><span>GOT IT</span></button>
+  </div>
+</div>
+
+<div class="scrim" id="scrim">
+  <div class="sheet" role="dialog" aria-modal="true" aria-label="설정">
+    <h2>설정</h2>
+    <div class="row">
+      <span class="label">정답 자동 재생
+        <span class="sub">카드를 열면 바로 발음이 나옵니다.</span>
+      </span>
+      <button class="toggle" id="tAuto" aria-pressed="false" aria-label="정답 자동 재생"></button>
+    </div>
+    <div class="row">
+      <span class="label">틀린 문장 더 자주 보기
+        <span class="sub">끄면 완전 무작위. 켜면 틀린 카드가 약 3배 자주 나오되, 모든 카드가 계속 등장합니다.</span>
+      </span>
+      <button class="toggle" id="tWeight" aria-pressed="true" aria-label="틀린 문장 가중치"></button>
+    </div>
+    <div class="row">
+      <span class="label">한글 뜻 먼저 보기
+        <span class="sub">끄면 영어를 먼저 보고 한글 뜻을 맞추는 역방향 모드가 됩니다.</span>
+      </span>
+      <button class="toggle" id="tDir" aria-pressed="true" aria-label="출제 방향"></button>
+    </div>
+    <button class="danger" id="btnReset">학습 기록 초기화</button>
+    <button class="close" id="btnClose">닫기</button>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* ------------------------------------------------------------------
+   DATA — [category, korean, english, note?]
+------------------------------------------------------------------ */
+const DECKS = [
+  { id:"all",  name:"전체" },
+  { id:"mine", name:"내 교정노트" },
+  { id:"pron", name:"발음 주의" },
+  { id:"p2",   name:"Part 2 사진묘사" },
+  { id:"p3",   name:"Part 3 질문답변" },
+  { id:"p4",   name:"Part 4 정보전달" },
+  { id:"p5",   name:"Part 5 의견말하기" },
+  { id:"core", name:"만능 연결어" }
+];
+
+const DATA = [
+/* ---------- Part 2 : 사진 묘사 ---------- */
+["p2","이 사진은 회의실에서 찍힌 것 같습니다.","I think this picture was taken in a meeting room."],
+["p2","이 사진은 실내에서 찍힌 것 같습니다.","I think this picture was taken indoors.","장소 단어가 안 떠오를 때 쓰는 안전장치."],
+["p2","이 사진은 야외에서 찍힌 것 같습니다.","I think this picture was taken outdoors."],
+["p2","이 사진은 창고에서 찍힌 것 같습니다.","I think this picture was taken in a warehouse.","물건을 보관·운반하는 곳은 warehouse, 만드는 곳이 factory."],
+["p2","이 사진은 식료품점에서 찍힌 것 같습니다.","I think this picture was taken at a grocery store."],
+["p2","이 사진은 해변에서 찍힌 것 같습니다.","I think this picture was taken at the beach."],
+["p2","이 사진은 부두에서 찍힌 것 같습니다.","I think this picture was taken at the dock."],
+["p2","이 사진에는 네 명의 사람이 있습니다.","There are four people in this picture."],
+["p2","이 사진에는 여러 명의 사람이 있습니다.","There are several people in this picture.","인원이 애매하면 숫자 대신 several."],
+["p2","사진 왼쪽에는","On the left side of the picture,"],
+["p2","사진 오른쪽에는","On the right side of the picture,"],
+["p2","사진 앞쪽에는","In the foreground of the picture,"],
+["p2","사진 뒤쪽에는","In the background of the picture,"],
+["p2","사진 가운데에는","In the middle of the picture,"],
+["p2","그들 뒤에는","Behind them,"],
+["p2","그 남자 옆에는","Next to the man,"],
+["p2","노란 블라우스를 입은 여자가 발표를 하고 있습니다.","A woman wearing a yellow blouse is giving a presentation."],
+["p2","체크무늬 셔츠를 입은 남자가 노트북으로 타이핑하고 있습니다.","A man wearing a checked shirt is typing on his laptop."],
+["p2","두 여자가 발표를 듣고 있습니다.","Two women are listening to the presentation.","women은 복수 → are. 수일치 최우선 교정 대상."],
+["p2","선반에 상자가 많이 쌓여 있습니다.","A lot of boxes are stacked on the shelves.","창고·매장 사진 만능 문장."],
+["p2","노란 조끼를 입은 남자가 바코드를 스캔하고 있습니다.","A man wearing a yellow vest is scanning a barcode."],
+["p2","흰 셔츠를 입은 다른 남자는 서류를 보고 있습니다.","Another man wearing a white shirt is looking at a document."],
+["p2","흰 앞치마를 입은 남자가 음식을 굽고 있습니다.","A man wearing a white apron is grilling some food.","옷차림은 수식어, 동사 자리엔 반드시 동작을 넣기."],
+["p2","그것은 아주 맛있어 보입니다.","It looks very delicious."],
+["p2","여자가 남자의 사진을 찍고 있습니다.","A woman is taking a photo of a man.","take a photo OF (to 아님). 관사 a도 빠뜨리지 않기."],
+["p2","여자가 셀카를 찍고 있습니다.","A woman is taking a selfie."],
+["p2","남자가 기타를 치면서 노래를 부르고 있습니다.","A man is playing the guitar while singing a song."],
+["p2","큰 유람선을 볼 수 있습니다.","I can see a big cruise ship.","cruise만 쓰면 '유람 여행'. ship까지 붙이기."],
+["p2","몇몇 사람들이 줄을 서서 기다리고 있습니다.","Several people are waiting in line."],
+["p2","두 사람이 서로 이야기를 나누고 있습니다.","Two people are talking to each other."],
+["p2","그 여자는 무언가를 가리키고 있습니다.","The woman is pointing at something."],
+["p2","그들 뒤에는 큰 창문이 있습니다.","Behind them, there is a big window."],
+["p2","날씨가 아주 화창해 보입니다.","The weather looks very sunny."],
+["p2","그들은 모두 편안해 보입니다.","They all look relaxed."],
+["p2","전반적으로 사람들이 즐거운 시간을 보내는 것 같습니다.","Overall, it looks like people are enjoying their time.","어떤 사진에도 통하는 만능 마무리 문장."],
+["p2","그 밖에 특별한 것은 보이지 않습니다.","Other than that, I can't see anything special.","시간이 남을 때 채우는 문장."],
+
+/* ---------- Part 3 : 질문 답변 ---------- */
+["p3","제가 마지막으로 신발을 산 것은 약 3년 전입니다.","The last time I bought shoes was about three years ago."],
+["p3","저는 사촌 결혼식 때문에 정장 구두를 샀습니다.","I bought formal shoes for my cousin's wedding.","'무엇을 샀다'에서 끝내지 말고 이유·상황 한 조각 붙이기."],
+["p3","저는 새로운 것을 시도하는 걸 좋아합니다.","I like to try new things."],
+["p3","그래서 저는 다양한 브랜드에서 신발을 삽니다.","So I buy shoes from different brands."],
+["p3","제 생각에 편안함이 가장 중요한 요소입니다.","I think comfort is the most important factor."],
+["p3","왜냐하면 저는 매일 많이 걷기 때문입니다.","This is because I walk a lot every day."],
+["p3","예를 들어, 작년에 저는 예쁘지만 불편한 신발을 샀습니다.","For example, last year I bought stylish but uncomfortable shoes."],
+["p3","그래서 저는 그것들을 한 번도 신지 않았습니다.","So I never wore them."],
+["p3","저는 한 달에 한 번 정도 공연을 보러 갑니다.","I attend live performances about once a month."],
+["p3","저는 보통 록 페스티벌을 즐깁니다.","I usually enjoy rock festivals."],
+["p3","저는 같은 공연을 두 번 보지는 않을 것 같습니다.","I wouldn't attend the same performance twice."],
+["p3","이미 무슨 일이 일어날지 알아서 지루하기 때문입니다.","This is because I already know what will happen, so it's boring."],
+["p3","저는 그 돈을 새로운 경험에 쓰는 게 낫습니다.","I'd rather spend that money on a new experience."],
+["p3","제 친구들은 그것을 살 여유가 없습니다.","My friends can't afford to buy them.","afford는 can과 세트. don't afford는 틀린 표현."],
+["p3","그래서 콘서트 티켓은 특별하고 기억에 남는 선물이 될 것입니다.","So a concert ticket would be a special and memorable gift."],
+["p3","저는 보통 일주일에 두세 번 그렇게 합니다.","I usually do that two or three times a week."],
+["p3","솔직히 말해서, 저는 그것에 대해 깊이 생각해 본 적이 없습니다.","To be honest, I've never really thought about it.","시간 벌면서 자연스럽게 들리는 문장."],
+["p3","그것은 제 시간을 많이 절약해 주기 때문입니다.","This is because it saves me a lot of time."],
+["p3","무엇보다도, 그것은 매우 편리합니다.","Above all, it's very convenient."],
+["p3","그래서 저는 그것이 좋은 생각이라고 생각합니다.","So I think it's a good idea.","Q7 30초 답변의 마무리 문장."],
+
+/* ---------- Part 4 : 표 보고 답변 ---------- */
+["p4","안녕하세요, 무엇을 도와드릴까요?","Hello, how may I help you?"],
+["p4","회의는 사우스파크 호텔에서 열릴 예정입니다.","The conference will be held at the South Park Hotel.","held [헬드]. 'head'로 발음하지 않기."],
+["p4","첫 세션은 오전 9시에 시작합니다.","The first session will start at 9 a.m."],
+["p4","등록 마감일은 6월 3일입니다.","The registration deadline is June 3rd."],
+["p4","수업은 6월 15일에 시작합니다.","The classes will start on June 15th."],
+["p4","죄송하지만, 잘못된 정보를 가지고 계십니다.","I'm sorry, but you have the wrong information.","정보 정정 문제는 절대 Yes로 시작하지 않기."],
+["p4","참가비는 300달러가 아니라 실제로 315달러입니다.","The fee is actually $315, not $300."],
+["p4","죄송하지만 그 세션은 취소되었습니다.","I'm sorry, but that session has been canceled."],
+["p4","네, 그 행사는 메인 홀에서 열립니다.","Yes, the event will be held in the Main Hall."],
+["p4","네, 두 개의 세션이 있습니다.","Yes, there are two sessions.","Q10은 항상 개수를 먼저 말하고 시작."],
+["p4","첫 번째로, 오전 9시에 발표가 있습니다.","First, there is a presentation at 9 a.m."],
+["p4","두 번째로, 오후 1시 30분에 발표가 있습니다.","Second, there is a presentation at 1:30 p.m.","1:30은 one thirty. 'one point five'가 아님."],
+["p4","그것은 화요일 오후 1시부터 3시까지 진행됩니다.","It runs from 1 to 3 p.m. on Tuesday.","from A to B. from A and B가 아님."],
+["p4","그 발표는 올리비아 스미스가 진행합니다.","The presentation will be given by Olivia Smith."],
+["p4","오전 세션은 두 개, 오후 세션은 한 개 있습니다.","There are two morning sessions and one afternoon session."],
+["p4","그 워크숍은 30분 동안 진행됩니다.","The workshop will last for 30 minutes."],
+["p4","마지막 순서는 오후 5시에 끝납니다.","The last session will end at 5 p.m."],
+["p4","도움이 되었기를 바랍니다.","I hope that helps.","Part 4 만능 마무리."],
+["p4","다른 질문이 있으신가요?","Do you have any other questions?"],
+["p4","다시 한번 확인해 드리겠습니다.","Let me check that for you again."],
+
+/* ---------- Part 5 : 의견 말하기 ---------- */
+["p5","저는 그 진술에 동의합니다.","I agree with the statement."],
+["p5","저는 그 진술에 동의하지 않습니다.","I disagree with the statement."],
+["p5","학생들이 어려운 목표를 세워야 한다는 데 동의합니다.","I agree that students should set challenging goals."],
+["p5","이것에 대한 이유는 두 가지입니다.","I have two reasons for this.","60초를 채우는 가장 쉬운 뼈대."],
+["p5","첫째로, 어려운 목표는 학생들이 더 열심히 노력하게 만듭니다.","First, difficult goals push students to work harder."],
+["p5","예를 들어, 제가 고등학생이었을 때,","For example, when I was in high school,"],
+["p5","제 목표는 좋은 대학에 들어가는 것이었습니다.","my goal was to get into a good university."],
+["p5","처음에는 불가능해 보였습니다.","At first, it seemed impossible."],
+["p5","하지만 저는 매일 다섯 시간씩 공부했습니다.","But I studied five hours every day.","구체적인 숫자가 들어가야 30초가 채워집니다."],
+["p5","그리고 마침내 해냈습니다.","And I finally made it."],
+["p5","성격이 비슷한 동료와 일하는 것이 더 생산적입니다.","It is more productive to work with coworkers who have similar personalities."],
+["p5","그들은 서로 자주 다투지 않을 것이기 때문입니다.","This is because they will not fight with each other often.","fight의 f 발음 주의. bite로 들리면 안 됨."],
+["p5","성격이 아주 다른 동료와 일했을 때, 저희는 많이 다퉜습니다.","When I worked with a coworker who had a very different personality, we argued a lot.","When절만 말하고 끝내지 않기. 주절까지 반드시."],
+["p5","그래서 저는 효율적으로 일할 수 없었습니다.","So I couldn't work efficiently."],
+["p5","결과적으로 제 업무 효율이 떨어졌습니다.","As a result, my work efficiency declined."],
+["p5","그것은 장기적으로 도움이 됩니다.","It helps in the long run."],
+["p5","그것은 시간과 돈을 모두 절약해 줍니다.","It saves both time and money."],
+["p5","게다가, 그것은 스트레스를 줄여 줍니다.","In addition, it reduces stress."],
+["p5","저는 이것이 큰 차이를 만든다고 믿습니다.","I believe this makes a big difference."],
+["p5","반면에, 어떤 사람들은 다르게 생각합니다.","On the other hand, some people think differently."],
+["p5","그것이 제가 이렇게 생각하는 이유입니다.","That's why I think this way."],
+["p5","이러한 이유로, 저는 그것이 중요하다고 생각합니다.","For these reasons, I think it is important.","마무리 문장 없이 끝내면 미완성으로 들립니다."],
+
+/* ---------- 만능 연결어 ---------- */
+["core","왜냐하면","This is because"],
+["core","예를 들어","For example"],
+["core","그 결과","As a result"],
+["core","게다가","In addition"],
+["core","하지만","However"],
+["core","반면에","On the other hand"],
+["core","사실은","Actually"],
+["core","제 생각에는","In my opinion"],
+["core","솔직히 말하면","To be honest"],
+["core","다시 말해서","In other words"],
+["core","우선","First of all"],
+["core","마지막으로","Lastly"],
+["core","전반적으로","Overall"],
+["core","요약하자면","To sum up"],
+["core","무엇보다 중요한 것은","Most importantly"],
+["core","제 경험으로 볼 때","From my experience"],
+
+/* ---------- 내 교정노트 (2·3회차 실제 오류) ---------- */
+["mine","훌륭한 식료품점 고객 여러분께 알립니다.","Attention, Wonderful Grocery customers.","3회차 Q1: 'wonderful sorry customer'로 들렸습니다. grocery [그로우서리] + 복수 -s."],
+["mine","가게 앞쪽에","at the front of the store","3회차 Q1: 'brunt'로 들렸습니다. front의 f 발음."],
+["mine","이 코너는 바쁜 고객들에게 빠른 이용을 제공합니다.","This section provides quick access for customers in a hurry.","3회차 Q1: 'kick asses'로 들렸습니다. quick access 또박또박."],
+["mine","10개 미만의 물건이 있으시면","If you have fewer than 10 items,","-s 끝까지 발음하기."],
+["mine","더 빠른 서비스를 위해 저희 급행 계산대를 이용하세요.","You can use our express lanes for even faster service.","faster의 f. 'best'로 들리면 안 됩니다."],
+["mine","대화, 사진 촬영, 영상 녹화는 허용되지 않습니다.","Talking, taking pictures, and recording videos are not permitted.","2회차 Q1: 'pre-made'로 들렸습니다. permitted [퍼미티드]."],
+["mine","저희 은행에 전화 주셔서 감사합니다.","Thank you for calling our bank.","Thank you, calling ~ 이 아니라 for calling."],
+["mine","저희는 편리하고 믿을 수 있는 은행 서비스를 제공합니다.","We aim to provide convenient and reliable banking services."],
+["mine","저는 내구성이 좋은 신발을 오래 신을 수 있습니다.","I can wear durable shoes for a long time.","durability는 명사. 신발을 꾸밀 땐 durable."],
+["mine","오후 3시 30분에","at three thirty p.m.","3.5pm(three point five)라고 읽지 않기."],
+["mine","저는 그것을 살 여유가 없습니다.","I can't afford to buy it."],
+["mine","제 업무 효율이 떨어졌습니다.","My work efficiency declined."],
+["mine","그들은 서로 자주 다투지 않습니다.","They don't fight with each other often."],
+["mine","그 회의는 메인 홀에서 열릴 것입니다.","The meeting will be held in the Main Hall.","be held 수동태. will head 아님."],
+["mine","여자가 남자에게 말을 걸고 있습니다.","A woman is talking to a man.","3회차 Q4: 'taking a man'으로 들렸습니다."],
+
+/* ---------- 발음 주의 단어 ---------- */
+["pron","왼쪽","left","f: 윗니를 아랫입술에 대고 바람. 입술 붙이면 b가 됩니다."],
+["pron","앞쪽, 정면","front","f 발음. brunt/blunt로 들리면 감점."],
+["pron","싸우다, 다투다","fight","bite와 구분."],
+["pron","더 빠른","faster"],
+["pron","공장","factory","앞에 강세: FAC-to-ry."],
+["pron","자주","often","'오픈'이 아니라 [오f은] / [오프튼]."],
+["pron","창고","warehouse"],
+["pron","접근, 이용","access","AC-cess. 앞음절 강세."],
+["pron","허용된","permitted","per-MIT-ted. 가운데 강세."],
+["pron","식료품점","grocery store","GRO-ce-ry."],
+["pron","유람선","cruise ship"],
+["pron","앞치마","apron","A-pron. '에이프런'."],
+["pron","내구성","durability","du-ra-BIL-i-ty."],
+["pron","편안함","comfort","CUM-fort. '컴포트'보다 '컴f얼트'."],
+["pron","급행 계산대","express lane"],
+["pron","믿을 수 있는","reliable","re-LI-a-ble."],
+["pron","편리한","convenient","con-VEEN-ient."],
+["pron","쌓여 있는","stacked"],
+["pron","체크무늬 셔츠","a checked shirt"]
+];
+
+/* ------------------------------------------------------------------
+   STATE
+------------------------------------------------------------------ */
+const KEY = "toeic-speaking-cards-v1";
+const CARDS = DATA.map(([cat, ko, en, note]) => ({ cat, ko, en, note: note || "" }));
+const DECK_NAME = Object.fromEntries(DECKS.map(d => [d.id, d.name]));
+
+const defaults = {
+  deck: "all",
+  autoPlay: false,
+  weighted: true,
+  koFirst: true,
+  rate: 0.85,
+  progress: {}          // en -> { lvl, r, w }
+};
+let state = load();
+let session = { seen: 0, right: 0 };
+let current = null;
+let recent = [];
+let revealed = false;
+
+function load(){
+  try {
+    const raw = localStorage.getItem(KEY);
+    if (!raw) return { ...defaults, progress: {} };
+    const saved = JSON.parse(raw);
+    return { ...defaults, ...saved, progress: saved.progress || {} };
+  } catch { return { ...defaults, progress: {} }; }
+}
+function save(){
+  try { localStorage.setItem(KEY, JSON.stringify(state)); } catch {}
+}
+function rec(card){
+  return state.progress[card.en] || { lvl: 0, r: 0, w: 0 };
+}
+
+/* ------------------------------------------------------------------
+   DECK + WEIGHTED PICK
+------------------------------------------------------------------ */
+function deckCards(){
+  return state.deck === "all" ? CARDS : CARDS.filter(c => c.cat === state.deck);
+}
+
+// Level 0 (틀림) → 5 (숙달). 최고:최저 ≈ 3.5:1 — 치우치지 않게 완만한 곡선.
+const LEVEL_WEIGHT = [3.0, 2.4, 1.9, 1.5, 1.2, 0.85];
+
+function weightOf(card){
+  if (!state.weighted) return 1;
+  const st = rec(card);
+  let w = LEVEL_WEIGHT[Math.min(5, Math.max(0, st.lvl))];
+  if (st.r + st.w === 0) w *= 1.2;          // 아직 안 본 카드 살짝 우대
+  return w;
+}
+
+function pick(){
+  const pool = deckCards();
+  if (!pool.length) return null;
+  const avoid = new Set(recent.slice(-Math.min(6, Math.max(0, pool.length - 1))));
+  let cands = pool.filter(c => !avoid.has(c.en));
+  if (!cands.length) cands = pool;
+
+  const weights = cands.map(weightOf);
+  const total = weights.reduce((a, b) => a + b, 0);
+  let r = Math.random() * total;
+  for (let i = 0; i < cands.length; i++){
+    r -= weights[i];
+    if (r <= 0) return cands[i];
+  }
+  return cands[cands.length - 1];
+}
+
+/* ------------------------------------------------------------------
+   SPEECH
+------------------------------------------------------------------ */
+let voices = [];
+function refreshVoices(){ try { voices = window.speechSynthesis.getVoices() || []; } catch { voices = []; } }
+if ("speechSynthesis" in window){
+  refreshVoices();
+  window.speechSynthesis.onvoiceschanged = refreshVoices;
+}
+function pickVoice(){
+  if (!voices.length) refreshVoices();
+  const en = voices.filter(v => /^en\b|^en[-_]/i.test(v.lang));
+  if (!en.length) return null;
+  const preferred = ["Samantha","Google US English","Microsoft Aria","Microsoft Jenny","Microsoft Michelle","Ava","Allison","Alex","Google UK English Female"];
+  for (const name of preferred){
+    const hit = en.find(v => v.name.indexOf(name) !== -1);
+    if (hit) return hit;
+  }
+  return en.find(v => /en[-_]US/i.test(v.lang)) || en[0];
+}
+function speak(text){
+  if (!("speechSynthesis" in window)){
+    toast("이 브라우저는 음성 재생을 지원하지 않습니다");
+    return;
+  }
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  const v = pickVoice();
+  if (v){ u.voice = v; u.lang = v.lang; } else { u.lang = "en-US"; }
+  u.rate = state.rate;
+  u.pitch = 1;
+  u.onstart = () => el.play.classList.add("is-speaking");
+  u.onend = u.onerror = () => el.play.classList.remove("is-speaking");
+  window.speechSynthesis.speak(u);
+}
+
+/* ------------------------------------------------------------------
+   DOM
+------------------------------------------------------------------ */
+const el = {
+  decks: document.getElementById("decks"),
+  card: document.getElementById("card"),
+  tag: document.getElementById("tag"),
+  ko: document.getElementById("ko"),
+  en: document.getElementById("en"),
+  note: document.getElementById("note"),
+  play: document.getElementById("play"),
+  rate: document.getElementById("rate"),
+  again: document.getElementById("btnAgain"),
+  got: document.getElementById("btnGot"),
+  counter: document.getElementById("counter"),
+  mFill: document.getElementById("masteryFill"),
+  mLabel: document.getElementById("masteryLabel"),
+  mCount: document.getElementById("masteryCount"),
+  scrim: document.getElementById("scrim"),
+  toast: document.getElementById("toast")
+};
+
+let toastTimer = null;
+function toast(msg){
+  el.toast.textContent = msg;
+  el.toast.classList.add("is-on");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.toast.classList.remove("is-on"), 2200);
+}
+
+function buildDecks(){
+  el.decks.innerHTML = "";
+  DECKS.forEach(d => {
+    const n = d.id === "all" ? CARDS.length : CARDS.filter(c => c.cat === d.id).length;
+    const b = document.createElement("button");
+    b.className = "chip";
+    b.type = "button";
+    b.setAttribute("aria-pressed", String(state.deck === d.id));
+    b.innerHTML = d.name + '<span class="n">' + n + "</span>";
+    b.addEventListener("click", () => {
+      state.deck = d.id;
+      recent = [];
+      save();
+      buildDecks();
+      next();
+      updateMastery();
+    });
+    el.decks.appendChild(b);
+  });
+}
+
+function updateCounter(){
+  const acc = session.seen ? Math.round(session.right / session.seen * 100) + "%" : "—";
+  el.counter.innerHTML = "<b>" + session.seen + "</b>장 · 정답률 <b>" + acc + "</b>";
+}
+
+function updateMastery(){
+  const pool = deckCards();
+  const mastered = pool.filter(c => rec(c).lvl >= 4).length;
+  const pct = pool.length ? Math.round(mastered / pool.length * 100) : 0;
+  el.mFill.style.width = pct + "%";
+  el.mLabel.textContent = "숙달 " + pct + "%";
+  el.mCount.textContent = mastered + "/" + pool.length;
+}
+
+function render(){
+  if (!current) return;
+  const st = rec(current);
+  const front = state.koFirst ? current.ko : current.en;
+  const back  = state.koFirst ? current.en : current.ko;
+
+  el.ko.textContent = front;
+  el.en.textContent = back;
+  el.ko.style.fontFamily = state.koFirst ? "" : '"Literata", Georgia, serif';
+  el.en.style.fontFamily = state.koFirst ? "" : '"IBM Plex Sans KR", system-ui, sans-serif';
+
+  if (current.note){ el.note.textContent = current.note; el.note.hidden = false; }
+  else { el.note.hidden = true; }
+
+  const lvlDots = "●".repeat(st.lvl) + "○".repeat(5 - st.lvl);
+  el.tag.innerHTML = DECK_NAME[current.cat] + '<span class="dot"></span><span class="lvl">' + lvlDots + "</span>";
+  el.card.style.setProperty("--lvl", (st.lvl / 5 * 100) + "%");
+}
+
+function next(){
+  const c = pick();
+  if (!c){ el.ko.textContent = "이 덱에 카드가 없습니다."; return; }
+  current = c;
+  revealed = false;
+  el.card.classList.remove("is-open");
+  el.again.disabled = true;
+  el.got.disabled = true;
+  el.card.setAttribute("aria-label", "탭하면 정답이 보입니다");
+  render();
+}
+
+function reveal(){
+  if (revealed || !current) return;
+  revealed = true;
+  el.card.classList.add("is-open");
+  el.again.disabled = false;
+  el.got.disabled = false;
+  el.card.setAttribute("aria-label", "정답이 표시되었습니다");
+  if (state.autoPlay) speak(state.koFirst ? current.en : current.en);
+}
+
+function answer(correct){
+  if (!current) return;
+  if (!revealed){ reveal(); return; }
+  const st = rec(current);
+  const updated = correct
+    ? { lvl: Math.min(5, st.lvl + 1), r: st.r + 1, w: st.w }
+    : { lvl: Math.max(0, st.lvl - 2), r: st.r, w: st.w + 1 };
+  state.progress[current.en] = updated;
+  session.seen++;
+  if (correct) session.right++;
+  recent.push(current.en);
+  if (recent.length > 30) recent.shift();
+  save();
+  updateCounter();
+  updateMastery();
+  try { window.speechSynthesis.cancel(); } catch {}
+  next();
+}
+
+/* ---- events ---- */
+el.card.addEventListener("click", reveal);
+el.card.addEventListener("keydown", e => {
+  if (e.key === "Enter" || e.key === " "){ e.preventDefault(); reveal(); }
+});
+el.play.addEventListener("click", e => {
+  e.stopPropagation();
+  if (current) speak(current.en);
+});
+el.rate.addEventListener("click", e => {
+  const b = e.target.closest("button");
+  if (!b) return;
+  e.stopPropagation();
+  state.rate = parseFloat(b.dataset.rate);
+  save();
+  [...el.rate.querySelectorAll("button")].forEach(x =>
+    x.setAttribute("aria-pressed", String(x === b))
+  );
+  if (current && revealed) speak(current.en);
+});
+el.again.addEventListener("click", () => answer(false));
+el.got.addEventListener("click", () => answer(true));
+
+document.addEventListener("keydown", e => {
+  if (el.scrim.classList.contains("is-open")){
+    if (e.key === "Escape") closeSheet();
+    return;
+  }
+  if (e.target.closest("button")) return;
+  if (e.key === " "){ e.preventDefault(); revealed ? answer(true) : reveal(); }
+  else if (e.key === "1"){ answer(false); }
+  else if (e.key === "2"){ answer(true); }
+  else if (e.key.toLowerCase() === "p" && current){ speak(current.en); }
+});
+
+/* ---- settings sheet ---- */
+const toggles = {
+  tAuto:   { get: () => state.autoPlay, set: v => state.autoPlay = v },
+  tWeight: { get: () => state.weighted, set: v => state.weighted = v },
+  tDir:    { get: () => state.koFirst,  set: v => state.koFirst = v }
+};
+function syncToggles(){
+  Object.entries(toggles).forEach(([id, t]) =>
+    document.getElementById(id).setAttribute("aria-pressed", String(t.get()))
+  );
+}
+Object.entries(toggles).forEach(([id, t]) => {
+  document.getElementById(id).addEventListener("click", () => {
+    t.set(!t.get());
+    save();
+    syncToggles();
+    if (id === "tDir") next();
+  });
+});
+function openSheet(){ el.scrim.classList.add("is-open"); }
+function closeSheet(){ el.scrim.classList.remove("is-open"); }
+document.getElementById("openSettings").addEventListener("click", openSheet);
+document.getElementById("btnClose").addEventListener("click", closeSheet);
+el.scrim.addEventListener("click", e => { if (e.target === el.scrim) closeSheet(); });
+document.getElementById("btnReset").addEventListener("click", () => {
+  state.progress = {};
+  session = { seen: 0, right: 0 };
+  recent = [];
+  save();
+  updateCounter();
+  updateMastery();
+  next();
+  closeSheet();
+  toast("학습 기록을 초기화했습니다");
+});
+
+/* ---- boot ---- */
+[...el.rate.querySelectorAll("button")].forEach(b =>
+  b.setAttribute("aria-pressed", String(parseFloat(b.dataset.rate) === state.rate))
+);
+buildDecks();
+syncToggles();
+updateCounter();
+updateMastery();
+next();
+</script>
+</body>
+</html>
